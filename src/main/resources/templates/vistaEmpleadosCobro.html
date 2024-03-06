@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--Titulo de la pestaña-->
+	<title>Budget Rent a Car</title>
+
+	<!--Archivo de estilos css-->
+	<link rel="stylesheet" th:href="@{/estiloGeneral.css}">
+
+	<!--Icono de la pestaña-->
+	<link rel="shortcut icon" href="https://avisbudgetproduction.azureedge.net/skin/frontend/budget/default/favicon.ico"
+		type="image/x-icon" />
+
+	<!--Dependencias de bootstrap-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+</head>
+
+
+<body class="main-body">
+	<style>
+		.bg-orange {
+			background-color: rgb(237, 85, 5);
+		}
+	</style>
+
+	<!--Barra de navegacion-->
+	<nav class="navbar navbar-expand-lg bg-orange fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/home/}">
+				<img src="https://i.postimg.cc/x8wmmCHn/budget.png" alt="Logo" width="105" height="55"
+					class="d-inline-block align-text-top">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+		</div>
+	</nav>
+	<br>
+	<br>
+	<!--Contenido de la pagina separado en un div de titulo y un div de contenido-->
+	<div class="contenido">
+		<nav class="navbar bg-body-tertiary">
+			<div class="container-fluid d-flex justify-content-center">
+				<a class="navbar-brand">Catalogo de vehiculos</a>
+			</div>
+		</nav>
+
+	</div>
+
+	<div class="contenido">
+		<h1 style="margin-left:2em ">Datos de la Reserva</h1>
+		<ul style="margin-left:2.3em ">
+			<li>
+				<label>Placa del Vehiculo: </label>
+				<label th:text="${reserva.placaVehiculo}"></label>
+			</li>
+			<li>
+				<label>Cedula del Cliente: </label>
+				<label th:text="${reserva.cedulaCliente}"></label>
+			</li>
+			<li>
+				<label>Fecha de Inicio: </label>
+				<label th:text="${reserva.fechaInicio}"></label>
+			</li>
+			<li>
+				<label>Fecha de Fin: </label>
+				<label th:text="${reserva.fechaFin}"></label>
+			</li>
+			<li>
+				<label>Valor Subtotal: </label>
+				<label th:text="${reserva.valorSubTotal}"></label>
+			</li>
+			<li>
+				<label>Valor ICE: </label>
+				<label th:text="${reserva.valorIce}"></label>
+			</li>
+			<li>
+				<label>Valor Total a Pagar: </label>
+				<label th:text="${reserva.valorTotalAPagar}"></label>
+			</li>
+		</ul>
+
+		<form class="formulario" th:action=@{/empleados/cobrar} th:object=${cobro} th:method=POST>
+			<br>
+			<label>Checkout</label>
+			<br>
+			<br>
+			<label style="margin-right:3.05em ;">Numero de tarjeta de Credito: </label>
+			<input type="text" th:field="*{numeroTarjeta}" name="numeroTarjeta">
+			<br>
+			<label style="margin-right:2.2em ;">Fecha de cobro (DD/MM/YYYY): </label>
+			<input type="text" th:field="*{fechaDeCobro}" name="fechaDeCobro">
+			<br>
+			<input type="submit" value="Reservar" style="background-color: rgb(237, 85, 5); color: white; border-color: rgb(237, 85, 5);">
+		</form>
+		<br>
+
+	</div>
+
+
+
+</body>
+
+</html>

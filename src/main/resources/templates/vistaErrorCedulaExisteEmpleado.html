@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: rgb(249, 103, 6);
+        }
+        p {
+            font-size: 18px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color:  rgb(237, 85, 5);;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-color: rgb(237, 85, 5);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error</h1>
+    <p>Este número de cédula ya se encuentra registrado en el sistema, Por favor, intente de nuevo.</p>
+    
+    <a th:href="@{/empleados/registrar-cliente}">Volver al formulario de registro</a>
+</body>
+</html>
