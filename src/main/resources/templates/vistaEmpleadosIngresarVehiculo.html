@@ -115,14 +115,14 @@
 					<div class="mb-3 row">
 						<label class="col-sm-2 col-form-label">Modelo:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field=${vehiculo.modelo} placeholder="modelo" required>
+							<input type="text" class="form-control" th:field=${vehiculo.modelo} placeholder="modelo" required oninput="this.value = this.value.toUpperCase()">
 						</div>
 					</div>
 
 					<div class="mb-3 row">
 						<label class="col-sm-2 col-form-label">Marca:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field=${vehiculo.marca} placeholder="marca" required>
+							<input type="text" class="form-control" th:field=${vehiculo.marca} placeholder="marca" required oninput="this.value = this.value.toUpperCase()">
 						</div>
 					</div>
 

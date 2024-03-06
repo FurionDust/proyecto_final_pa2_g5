@@ -66,7 +66,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public List<Reserva> seleccionarReservaPorFecha(LocalDate fehaInicio, LocalDate fechaFin) {
 
 		TypedQuery<Reserva> myQuery = this.entityManager.createQuery(
-				"SELECT r FROM Reserva r WHERE r.fechaInicio >= :datoInicio AND r.fechaFin < :datoFin ", Reserva.class);
+				"SELECT r FROM Reserva r WHERE r.fechaInicio >= :datoInicio AND r.fechaFin <= :datoFin ", Reserva.class);
 		myQuery.setParameter("datoInicio", fehaInicio);
 		myQuery.setParameter("datoFin", fechaFin);
 		return myQuery.getResultList();

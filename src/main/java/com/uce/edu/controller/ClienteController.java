@@ -82,23 +82,22 @@ public class ClienteController {
 	@PostMapping("/registrar-cliente")
 	public String registrarCliente(@ModelAttribute("cliente") Cliente cliente, Model model) {
 
-	    Cliente existeCliente = clienteService.buscarPorCedula(cliente.getCedula());
+		Cliente existeCliente = clienteService.buscarPorCedula(cliente.getCedula());
 
-	    if (existeCliente != null) {
-	        model.addAttribute("error", "Ya existe un cliente registrado con este número de cédula.");
-	        return "vistaErrorCedulaExiste";
-	    }
+		if (existeCliente != null) {
+			model.addAttribute("error", "Ya existe un cliente registrado con este número de cédula.");
+			return "vistaErrorCedulaExiste";
+		}
 
-	    cliente.setRegistro("Cliente (C)");
-	    clienteService.agregar(cliente);
+		cliente.setRegistro("Cliente (C)");
+		clienteService.agregar(cliente);
 
-	    
-	    return "redirect:/clientes/registro-exitoso";
+		return "redirect:/clientes/registro-exitoso";
 	}
 
 	@GetMapping("/registro-exitoso")
 	public String cargarVistaRegistroExitoso() {
-	    return "vistaClienteRegistroExitoso";
+		return "vistaClienteRegistroExitoso";
 	}
 
 	@GetMapping("/error-cedula-placa-inexistente")

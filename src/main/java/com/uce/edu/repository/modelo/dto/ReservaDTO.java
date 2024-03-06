@@ -13,7 +13,6 @@ public class ReservaDTO {
 	private String cedulaCliente;
 
 	
-	
 	public ReservaDTO() {
 		super();
 	}

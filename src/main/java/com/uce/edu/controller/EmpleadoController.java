@@ -56,12 +56,13 @@ public class EmpleadoController {
 		vehiculos = vehiculoService.buscarTodos();
 		return "vistaEmpleadosHome";
 	}
+
 	@GetMapping("/registrar-cliente")
 	public String cargarVistaRegistrarCliente(Model model) {
 		model.addAttribute("cliente", new Cliente());
 		return "vistaEmpleadosRegistrarCliente";
 	}
-	
+
 	@PostMapping("/realizar-registro")
 	public String registrarCliente(Cliente cliente, Model model) {
 		Cliente existeCliente = clienteService.buscarPorCedula(cliente.getCedula());
@@ -115,24 +116,24 @@ public class EmpleadoController {
 	}
 
 	@PostMapping("/realizar-ingreso-vehiculo")
-    public String ingresarVehiculo(Vehiculo vehiculo, Model model) {
-        Vehiculo existePlaca = vehiculoService.buscarPorPlaca(vehiculo.getPlaca());
+	public String ingresarVehiculo(Vehiculo vehiculo, Model model) {
+		Vehiculo existePlaca = vehiculoService.buscarPorPlaca(vehiculo.getPlaca());
 
-        if (existePlaca != null) {
-            model.addAttribute("error", "Ya existe una placa registrada con este número");
-            return "vistaErrorPlacaExiste";
-        }
+		if (existePlaca != null) {
+			model.addAttribute("error", "Ya existe una placa registrada con este número");
+			return "vistaErrorPlacaExiste";
+		}
 
-        vehiculo.setEstado("Disponible (D)");
-        vehiculoService.agregar(vehiculo);
+		vehiculo.setEstado("Disponible (D)");
+		vehiculoService.agregar(vehiculo);
 
-        return "redirect:/empleados/registro-exitoso-vehiculo";
-    }
+		return "redirect:/empleados/registro-exitoso-vehiculo";
+	}
 
-    @GetMapping("/registro-exitoso-vehiculo")
-    public String cargarVistaRegistroExitosoVehiculo() {
-        return "vistaEmpleadoRegistroExitoso";
-    }
+	@GetMapping("/registro-exitoso-vehiculo")
+	public String cargarVistaRegistroExitosoVehiculo() {
+		return "vistaEmpleadoRegistroExitoso";
+	}
 
 	@GetMapping("/buscar-vehiculo")
 	public String cargarVistaBuscarVehiculo(Model model) {
@@ -208,6 +209,12 @@ public class EmpleadoController {
 	public String buscarVehiculos(@ModelAttribute BusquedaVehiculoDTO dto) {
 		vehiculos = vehiculoService.buscarPorMarcaModelo(dto.getMarca(), dto.getModelo());
 		return "redirect:/empleados/retirar-vehiculo-sin-reserva";
+	}
+
+	@GetMapping("/no-disponible")
+	public String vehiculoNoDisponible() {
+
+		return "vistaErrorReserva";
 	}
 
 	@GetMapping("/reservar-vehiculo")
